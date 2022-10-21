@@ -24,7 +24,7 @@ USER opam
 RUN git clone https://github.com/AliveToolkit/alive2.git \
   && cd alive2 && mkdir build && cd build \
   && which g++-10 gcc-10 \
-  && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release .. \
+  && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DBUILD_TV=1 .. \
   && ninja
 
 # Download opam dependency files for ASLi/bap, and install
