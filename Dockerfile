@@ -25,7 +25,7 @@ RUN eval `opam env` \
 
 
 # Local LLVM build for alive2 only
-ARG llvm=llvm-14.0.6+rtti+eh
+ARG llvm=llvm-project-15.0.3+rtti
 ARG llvm_url=https://github.com/katrinafyi/pac-environment/releases/download/llvm/${llvm}.tar.gz
 
 # Use pre-compiled llvm build

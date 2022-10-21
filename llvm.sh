@@ -24,6 +24,6 @@ cmake -GNinja -DCMAKE_INSTALL_PREFIX="$PREFIX" -DLLVM_ENABLE_RTTI=ON -DLLVM_ENAB
 ninja
 ninja install
 
-tar czf $NEW_NAME.tar.gz $PREFIX
+tar czf $NEW_NAME.tar.gz $NEW_NAME
 
 
