@@ -21,11 +21,11 @@ RUN tar xf $llvm.tar.gz && cp -rv --no-clobber $llvm/. /usr/local
 USER opam
 
 # Compile and install alive2
-RUN git clone https://github.com/AliveToolkit/alive2.git \
-  && cd alive2 && mkdir build && cd build \
-  && which g++-10 gcc-10 \
-  && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DBUILD_TV=1 .. \
-  && ninja
+#RUN git clone https://github.com/AliveToolkit/alive2.git \
+#  && cd alive2 && mkdir build && cd build \
+#  && which g++-10 gcc-10 \
+#  && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DBUILD_TV=1 .. \
+#  && ninja
 
 # Download opam dependency files for ASLi/bap, and install
 ADD --chown=opam https://raw.githubusercontent.com/UQ-PAC/asl-interpreter/partial_eval/asli.opam ./asli.opam
