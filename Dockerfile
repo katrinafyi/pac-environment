@@ -25,18 +25,18 @@ RUN eval `opam env` \
 
 
 # Local LLVM build for alive2 only
-ARG llvm=llvm-project-15.0.3+rtti
-ARG llvm_url=https://github.com/katrinafyi/pac-environment/releases/download/llvm/${llvm}.tar.gz
-
-# Use pre-compiled llvm build
-ADD --chown=opam ${llvm_url} .
-RUN tar xf $llvm.tar.gz
-
-# Compile and install alive2 using local llvm+rtti
-RUN git clone https://github.com/AliveToolkit/alive2.git \
-  && cd alive2 && mkdir build && cd build \
-  && which g++-10 gcc-10 \
-  && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=~/$llvm -DBUILD_TV=1 .. \
-  && ninja
+# ARG llvm=llvm-project-15.0.3+rtti
+# ARG llvm_url=https://github.com/katrinafyi/pac-environment/releases/download/llvm/${llvm}.tar.gz
+#
+# # Use pre-compiled llvm build
+# ADD --chown=opam ${llvm_url} .
+# RUN tar xf $llvm.tar.gz
+#
+# # Compile and install alive2 using local llvm+rtti
+# RUN git clone https://github.com/AliveToolkit/alive2.git \
+#   && cd alive2 && mkdir build && cd build \
+#   && which g++-10 gcc-10 \
+#   && CXX=`which g++-10` CC=`which gcc-10` cmake -GNinja -DCMAKE_BUILD_TYPE=Release \
+#     -DCMAKE_PREFIX_PATH=~/$llvm -DBUILD_TV=1 .. \
+#   && ninja
 
