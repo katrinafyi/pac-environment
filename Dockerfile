@@ -11,18 +11,20 @@ RUN sed -i \
 RUN apt-get update && apt-get install -y python3 libgmp-dev yasm m4 wget \
   libcurl4-gnutls-dev pkg-config zlib1g-dev cmake ninja-build g++-10 \
   radare2 z3 libz3-dev llvm-12-dev \
-  re2c
+  re2c \
+  libpcre3-dev
 
 USER opam
 
-# Install opam dependencies for ASLi/bap
-# Note: system-install of llvm-12-dev will be used by bap.
+# Install opam dependencies for ASLi
 ADD --chown=opam https://raw.githubusercontent.com/UQ-PAC/asl-interpreter/partial_eval/asli.opam ./asli.opam
-ADD --chown=opam https://raw.githubusercontent.com/UQ-PAC/bap/a64-lifter-plugin/opam/opam ./bap.opam
 RUN eval `opam env` \
-  && opam install --deps-only ./bap.opam ./asli.opam \
+  && opam install --deps-only ./asli.opam --with-test \
   && opam install ocaml-lsp-server
 
+ENV OPAMROOT=/home/opam/.opam
+
+USER root
 
 # Local LLVM build for alive2 only
 # ARG llvm=llvm-project-15.0.3+rtti
